@@ -1,0 +1,52 @@
+!baseline = 1.5
+!basesize = 1em
+!h1_size = 3.0em
+!h2_size = 2.4em
+!h3_size = 1.8em
+!h4_size = 1.6em
+!h5_size = 1.4em
+
+!h1_lineheight = !baseline / !h1_size
+!h2_lineheight = !baseline / !h2_size
+!h3_lineheight = !baseline / !h3_size
+!h4_lineheight = !baseline / !h4_size
+!h5_lineheight = !baseline / !h5_size
+
+.wrap
+  :width 24.06em
+  :background-color #fffffe
+  :margin 0px auto
+#content
+  :position relative
+  :font-size = !basesize
+  :line-height = !baseline
+  :margin 0em 1.6em
+  :text-align justify
+  h1
+    :font-size = !h1_size
+    :line-height = !h1_lineheight
+    :margin-top = !h1_lineheight
+    :margin-bottom = !h1_lineheight
+  h2
+    :font-size = !h2_size
+    :line-height = !baseline / !h2_size
+    :margin-top = !h2_lineheight * 1.5
+    :margin-bottom = !h2_lineheight * 0.5
+  h3
+    :font-size = !h3_size
+    :line-height = !baseline / !h3_size
+    :margin-top = !h3_lineheight
+    :margin-bottom = !h3_lineheight
+  h4
+    :font-size = !h4_size
+    :line-height = !baseline / !h4_size
+    :margin-top = !h4_lineheight
+    :margin-bottom = !h4_lineheight
+  h5
+    :font-size = !h5_size
+    :line-height = !baseline / !h5_size
+    :margin-top = !h5_lineheight
+    :margin-bottom = !h5_lineheight
+  p
+    :margin
+      :bottom = !baseline+em

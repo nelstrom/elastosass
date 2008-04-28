@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title StaticMatic
+    = stylesheets :reset, :application, :grid
+  %body
+    .wrap
+      .grid
+        = partial("grid")
+        #content
+          = yield

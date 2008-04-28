@@ -1,0 +1,5 @@
+- 100.times do |i|
+  %div{:id => "h#{sprintf('%03d',i)}", :class => "hor #{"even" if i%2==0}"}
+
+- 25.times do |i|
+  %div{:id => "v#{sprintf('%03d',i)}", :class => "ver #{"even" if i%2==0}"}
