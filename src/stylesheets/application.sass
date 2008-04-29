@@ -1,16 +1,4 @@
-!baseline = 1.5
-!basesize = 1em
-!h1_size = 3.0em
-!h2_size = 2.4em
-!h3_size = 1.8em
-!h4_size = 1.6em
-!h5_size = 1.4em
-
-!h1_lineheight = !baseline / !h1_size
-!h2_lineheight = !baseline / !h2_size
-!h3_lineheight = !baseline / !h3_size
-!h4_lineheight = !baseline / !h4_size
-!h5_lineheight = !baseline / !h5_size
+@import calculations.sass
 
 .wrap
   :width 24.06em
@@ -25,8 +13,19 @@
   h1
     :font-size = !h1_size
     :line-height = !h1_lineheight
-    :margin-top = !h1_lineheight
-    :margin-bottom = !h1_lineheight
+    :margin-top = !h1_margin_top
+    :margin-bottom = !h1_margin_bottom
+    :padding-top = !h1_padding_top
+    :padding-bottom = !h1_padding_bottom
+    :border
+      :bottom
+        :color #999
+        :style solid
+        :width = !h1_border_bottom_size
+      :top
+        :color #999
+        :style solid
+        :width = !h1_border_top_size
   h2
     :font-size = !h2_size
     :line-height = !baseline / !h2_size
