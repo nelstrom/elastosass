@@ -1,0 +1,31 @@
+!baseline = 1.5
+
+/*  H1
+**************************************/
+
+!h1_size = 3.0em
+
+!h1_margin_top_ratio = 0.5  /* Should be a value between 0.0 and 1.0 */
+!h1_margins = 1  /* Should be a positive integer*/
+
+!h1_padding_top_ratio = 0.5
+!h1_paddings = 1
+
+/* The thickness of top and bottom borders.
+The value provided should approximately correspond to pixels at default font size
+*/
+!h1_border_top_ratio = 1
+!h1_border_bottom_ratio = 1
+
+/*
+For each accessor X, the above variables are used to determine the following constants:
+
+  !X_margin_top
+  !X_margin_bottom
+  !X_padding_top
+  !X_padding_bottom
+
+  !X_border_top_size
+  !X_border_bottom_size
+
+*/
