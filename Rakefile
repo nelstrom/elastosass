@@ -2,31 +2,33 @@ require 'rubygems'
 require 'rake'
 require 'fileutils'
 
-@types = %w{h0 h1 h2 h3 h4 h5}
-
-desc "Generate a calculate.sass file"
-task :calculate do
-  path = "./src/stylesheets/test-calc.sass"
-  FileUtils.mkdir_p(File.dirname(path))
-  File.open(path, 'w+') do |f|
-    @types.each do |type|
-      f << calculations(type)
-    end
-  end
-end
+@types = %w{h1 h2 h3 h4 h5}
 
 desc "Generate a variables.sass file"
 task :variables do
   path = "./src/stylesheets/test-var.sass"
   FileUtils.mkdir_p(File.dirname(path))
   File.open(path, 'w+') do |f|
+    f << variables_prelude
     @types.each do |type|
       f << variables(type)
     end
   end
 end
 
-desc "Generate a variables.sass file"
+desc "Generate a calculate.sass file"
+task :calculate do
+  path = "./src/stylesheets/test-calc.sass"
+  FileUtils.mkdir_p(File.dirname(path))
+  File.open(path, 'w+') do |f|
+    f << calculations_prelude
+    @types.each do |type|
+      f << calculations(type)
+    end
+  end
+end
+
+desc "Generate a definitions.sass file"
 task :definitions do
   path = "./src/stylesheets/test-def.sass"
   FileUtils.mkdir_p(File.dirname(path))
@@ -37,8 +39,22 @@ task :definitions do
   end
 end
 
+desc "Generate a rhythm.sass file"
+task :rhythm do
+  path = "./src/stylesheets/test-rhythm.sass"
+  FileUtils.mkdir_p(File.dirname(path))
+  File.open(path, 'w+') do |f|
+    f << <<END
+@import constants.sass
+@import variables.sass
+@import calulate.sass
+@import definitions.sass
+END
+  end
+end
+
 desc "Generate variables.sass and calulate.sass"
-task :all => [:variables, :calculate, :definitions]
+task :all => [:variables, :calculate, :definitions, :rhythm]
 
 @defaults = {
   "h1" => { :size => "3.0em",
@@ -58,6 +74,22 @@ task :all => [:variables, :calculate, :definitions]
   "h5" => { :size => "1.4em"
           }
 }
+
+def variables_prelude
+  template = <<END
+!line_height = 1.5
+
+END
+end
+
+def calculations_prelude
+  template = <<END
+/*  This file is auto generated.
+It is recommended that you leave it alone
+******************************************/
+
+END
+end
 
 def variables(var="h1", values=@defaults)
   template = <<END
