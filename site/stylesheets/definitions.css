@@ -1,0 +1,109 @@
+/* This is where vertical rhythm is set for the supplied elements */ */
+/* This file is auto generated. */
+
+
+/* Some constants */ */
+/* h1 */
+
+/* h2 */
+
+/* h3 */
+
+/* h4 */
+
+/* h5 */
+
+/* Calculations for h1 */
+
+/* Calculations for h2 */
+
+/* Calculations for h3 */
+
+/* Calculations for h4 */
+
+/* Calculations for h5 */
+
+/* h1 */
+
+h1 {
+  font-size: 3em;
+  line-height: 1em;
+  margin-top: 0.25em;
+  margin-bottom: 0.175em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  border-bottom-color: #999;
+  border-bottom-style: solid;
+  border-bottom-width: 0.075em;
+  
+  border-top-color: #999;
+  border-top-style: solid;
+  border-top-width: 0em; }
+
+/* h2 */
+
+h2 {
+  font-size: 2.4em;
+  line-height: 1.25em;
+  margin-top: 0.3125em;
+  margin-bottom: 0.28125em;
+  padding-top: 0.3125em;
+  padding-bottom: 0.3125em;
+  border-bottom-color: #999;
+  border-bottom-style: solid;
+  border-bottom-width: 0.03125em;
+  
+  border-top-color: #999;
+  border-top-style: solid;
+  border-top-width: 0em; }
+
+/* h3 */
+
+h3 {
+  font-size: 1.8em;
+  line-height: 0.833333333333333em;
+  margin-top: 0.416666666666667em;
+  margin-bottom: 0.375em;
+  padding-top: 0.416666666666667em;
+  padding-bottom: 0.416666666666667em;
+  border-bottom-color: #999;
+  border-bottom-style: solid;
+  border-bottom-width: 0.0416666666666667em;
+  
+  border-top-color: #999;
+  border-top-style: solid;
+  border-top-width: 0em; }
+
+/* h4 */
+
+h4 {
+  font-size: 1.6em;
+  line-height: 0.9375em;
+  margin-top: 0.46875em;
+  margin-bottom: 0.421875em;
+  padding-top: 0.46875em;
+  padding-bottom: 0.46875em;
+  border-bottom-color: #999;
+  border-bottom-style: solid;
+  border-bottom-width: 0.046875em;
+  
+  border-top-color: #999;
+  border-top-style: solid;
+  border-top-width: 0em; }
+
+/* h5 */
+
+h5 {
+  font-size: 1.4em;
+  line-height: 1.07142857142857em;
+  margin-top: 0.535714285714285em;
+  margin-bottom: 0.482142857142856em;
+  padding-top: 0.535714285714285em;
+  padding-bottom: 0.535714285714285em;
+  border-bottom-color: #999;
+  border-bottom-style: solid;
+  border-bottom-width: 0.0535714285714286em;
+  
+  border-top-color: #999;
+  border-top-style: solid;
+  border-top-width: 0em; }
