@@ -1,4 +1,6 @@
-@import calculations.sass
+@import definitions.sass
+@import palette.sass
+@import grid.sass
 
 .wrap
   :width 24.06em
@@ -26,26 +28,6 @@
         :color #999
         :style solid
         :width = !h1_border_top_size
-  h2
-    :font-size = !h2_size
-    :line-height = !baseline / !h2_size
-    :margin-top = !h2_lineheight * 1.5
-    :margin-bottom = !h2_lineheight * 0.5
-  h3
-    :font-size = !h3_size
-    :line-height = !baseline / !h3_size
-    :margin-top = !h3_lineheight
-    :margin-bottom = !h3_lineheight
-  h4
-    :font-size = !h4_size
-    :line-height = !baseline / !h4_size
-    :margin-top = !h4_lineheight
-    :margin-bottom = !h4_lineheight
-  h5
-    :font-size = !h5_size
-    :line-height = !baseline / !h5_size
-    :margin-top = !h5_lineheight
-    :margin-bottom = !h5_lineheight
   p
     :margin
       :bottom = !baseline+em
