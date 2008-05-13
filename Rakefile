@@ -45,18 +45,22 @@ task :all => [:variables, :calculate, :definitions]
 
 @defaults = {
   "h1" => { :size => "3.0em",
-            :m_top => "0.5",
+            :lines => "2",
+            :m_top => "0.16",
             :margins => "1",
-            :p_top => "0.5",
+            :p_top => "0.59",
             :paddings => "1",
             :b_top => "0",
             :b_bot => "1"
           },
-  "h2" => { :size => "2.4em"
+  "h2" => { :size => "2.4em",
+            :lines => "2"
           },
-  "h3" => { :size => "1.8em"
+  "h3" => { :size => "1.8em",
+            :lines => "2"
           },
-  "h4" => { :size => "1.6em"
+  "h4" => { :size => "1.6em",
+            :lines => "1"
           },
   "h5" => { :size => "1.4em"
           }
@@ -71,7 +75,7 @@ end
 
 def definitions_prelude
   template = <<END
-/* This is where vertical rhythm is set for the supplied elements */  
+// This is where vertical rhythm is set for the supplied elements 
 
 @import calculate.sass
 
@@ -80,11 +84,11 @@ end
 
 def calculations_prelude
   template = <<END
-/*  This file is auto generated.
-It is recommended that you leave it alone
-******************************************/
+//  This file is auto generated.
+//  It is recommended that you leave it alone
+//********************************************
 
-/* Some constants */
+// Some constants 
 !pixel_fudge = 0.075
 
 @import variables.sass
@@ -93,9 +97,10 @@ end
 
 def variables(var="h1", values=@defaults)
   template = <<END
-/*  #{var}
-**************************************/
+//  #{var}
+//**************************************
 !#{var}_size                = #{values[var][:size]}
+!#{var}_lineheights         = #{values[var][:lines] || 1}
 
 !#{var}_margin_top_ratio    = #{values[var][:m_top] || 0.5}
 !#{var}_margins             = #{values[var][:margins] || 1}
@@ -112,11 +117,11 @@ end
 def definitions(var="h1")
   template = <<END
 
-/*  #{var}
-**************************************/
+//  #{var}
+//**************************************
 #{var}
   :font-size = !#{var}_size
-  :line-height = !#{var}_lineheight
+  :line-height = !#{var}_lineheight * !#{var}_lineheights
   :margin-top = !#{var}_margin_top
   :margin-bottom = !#{var}_margin_bottom
   :padding-top = !#{var}_padding_top
@@ -136,8 +141,8 @@ end
 def calculations(var="h1")
     template = <<END
 
-/*  Calculations for #{var}
-**************************************/
+//  Calculations for #{var}
+//**************************************
 !#{var}_lineheight = !baseline / !#{var}_size
 !#{var}_margin_bot_ratio = 1 - !#{var}_margin_top_ratio
 !#{var}_padding_bot_ratio = 1 - !#{var}_padding_top_ratio
@@ -150,6 +155,7 @@ def calculations(var="h1")
 !#{var}_margin_bottom  = !#{var}_margin_bot_ratio * !#{var}_margins * !#{var}_lineheight - !#{var}_border_bottom_size
 !#{var}_padding_top    = !#{var}_padding_top_ratio * !#{var}_paddings * !#{var}_lineheight
 !#{var}_padding_bottom = !#{var}_padding_bot_ratio * !#{var}_paddings * !#{var}_lineheight
+
 END
   template
 end

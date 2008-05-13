@@ -1,6 +1,7 @@
 @import definitions.sass
 @import palette.sass
 @import grid.sass
+!grid_tuning = 0.5em
 
 .wrap
   :width 24.06em
@@ -12,22 +13,7 @@
   :line-height = !baseline
   :margin 0em 1.6em
   :text-align justify
-  h1
-    :font-size = !h1_size
-    :line-height = !h1_lineheight
-    :margin-top = !h1_margin_top
-    :margin-bottom = !h1_margin_bottom
-    :padding-top = !h1_padding_top
-    :padding-bottom = !h1_padding_bottom
-    :border
-      :bottom
-        :color #999
-        :style solid
-        :width = !h1_border_bottom_size
-      :top
-        :color #999
-        :style solid
-        :width = !h1_border_top_size
+  :top = !grid_tuning
   p
     :margin
       :bottom = !baseline+em
