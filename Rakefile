@@ -89,16 +89,42 @@ def variables(var="h1", values=@defaults)
   template = <<END
 //  #{var}
 //**************************************
-!#{var}_size                = #{values[var]["size"]     || values["defaults"]["size"]}
-!#{var}_lineheights         = #{values[var]["lines"]    || values["defaults"]["lines"]}
-!#{var}_margin_top_ratio    = #{values[var]["m_top"]    || values["defaults"]["m_top"]}
-!#{var}_margins             = #{values[var]["margins"]  || values["defaults"]["margins"]}
-!#{var}_padding_top_ratio   = #{values[var]["p_top"]    || values["defaults"]["p_top"]}
-!#{var}_paddings            = #{values[var]["paddings"] || values["defaults"]["paddings"]}
-!#{var}_border_top_ratio    = #{values[var]["b_top"]    || values["defaults"]["b_top"]}
-!#{var}_border_bottom_ratio = #{values[var]["b_bot"]    || values["defaults"]["b_bot"]}
+!#{var}_size        = #{values[var]["size"]  || values["defaults"]["size"]}
+!#{var}_lineheights = #{values[var]["lines"] || values["defaults"]["lines"]}
+!#{var}_whitespace  = #{values[var]["ws"]    || values["defaults"]["ws"]}
+!#{var}_top_space   = #{values[var]["ts"]    || values["defaults"]["ts"]}
+!#{var}_top_margin  = #{values[var]["tm"]    || values["defaults"]["tm"]}
+!#{var}_top_border  = #{values[var]["tb"]    || values["defaults"]["tb"]}
+!#{var}_bot_margin  = #{values[var]["bm"]    || values["defaults"]["bm"]}
+!#{var}_bot_border  = #{values[var]["bb"]    || values["defaults"]["bb"]}
+END
+end
+
+def calculations(var="h1")
+    template = <<END
+
+//  Calculations for #{var}
+//**************************************
+!#{var}_baseline           = !baseline / !#{var}_size
+!#{var}_bot_space          = 1 - !#{var}_top_space
+!#{var}_top_padding        = 1 - !#{var}_top_margin
+!#{var}_bot_padding        = 1 - !#{var}_top_padding
+
+!#{var}_border_correction  = !pixel_fudge / !#{var}_size
+!#{var}_border_top_size    = !#{var}_top_border * !#{var}_border_correction
+!#{var}_border_bottom_size = !#{var}_bot_border * !#{var}_border_correction
+
+!#{var}_top_whitespace     = !#{var}_whitespace * !#{var}_top_space * !#{var}_baseline
+!#{var}_bot_whitespace     = !#{var}_whitespace * !#{var}_bot_space * !#{var}_baseline
+
+!#{var}_margin_top         = !#{var}_top_margin * !#{var}_top_whitespace - !#{var}_border_top_size
+!#{var}_margin_bottom      = !#{var}_bot_margin * !#{var}_bot_whitespace - !#{var}_border_bottom_size
+!#{var}_padding_top        = !#{var}_top_padding * !#{var}_top_whitespace
+!#{var}_padding_bottom     = !#{var}_bot_padding * !#{var}_bot_whitespace
+
 
 END
+  template
 end
 
 def definitions(var="h1")
@@ -108,41 +134,21 @@ def definitions(var="h1")
 //**************************************
 #{var}
   :font-size = !#{var}_size
-  :line-height = !#{var}_lineheight * !#{var}_lineheights
+  :line-height = !#{var}_baseline * !#{var}_lineheights
   :margin-top = !#{var}_margin_top
-  :margin-bottom = !#{var}_margin_bottom
+  :border-top-width = !#{var}_border_top_size
   :padding-top = !#{var}_padding_top
+  
   :padding-bottom = !#{var}_padding_bottom
+  :border-bottom-width = !#{var}_border_bottom_size
+  :margin-bottom = !#{var}_margin_bottom
+  
   :border
     :bottom
       :color #999
       :style solid
-      :width = !#{var}_border_bottom_size
     :top
       :color #999
       :style solid
-      :width = !#{var}_border_top_size
 END
-end
-
-def calculations(var="h1")
-    template = <<END
-
-//  Calculations for #{var}
-//**************************************
-!#{var}_lineheight = !baseline / !#{var}_size
-!#{var}_margin_bot_ratio = 1 - !#{var}_margin_top_ratio
-!#{var}_padding_bot_ratio = 1 - !#{var}_padding_top_ratio
-
-!#{var}_border_correction = !pixel_fudge / !#{var}_size
-!#{var}_border_top_size = !#{var}_border_top_ratio * !#{var}_border_correction
-!#{var}_border_bottom_size = !#{var}_border_bottom_ratio * !#{var}_border_correction
-
-!#{var}_margin_top     = !#{var}_margin_top_ratio * !#{var}_margins * !#{var}_lineheight - !#{var}_border_top_size / 2
-!#{var}_margin_bottom  = !#{var}_margin_bot_ratio * !#{var}_margins * !#{var}_lineheight - !#{var}_border_bottom_size / 2
-!#{var}_padding_top    = !#{var}_padding_top_ratio * !#{var}_paddings * !#{var}_lineheight - !#{var}_border_top_size / 2
-!#{var}_padding_bottom = !#{var}_padding_bot_ratio * !#{var}_paddings * !#{var}_lineheight - !#{var}_border_bottom_size / 2
-
-END
-  template
 end

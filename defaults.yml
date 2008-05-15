@@ -1,29 +1,27 @@
+# The default values, what they stand for, and allowed values:
+# size:   font size       any reasonable value, with the unit 'em', e.g. 1.0em
+# lines:  line_heights    any positive integer,   e.g.: 1
+# ws:     white_space     any positive integer,   e.g.: 1
+# ts:     top_space       any value between 0-1,  e.g.:0.5
+# tm:     top_margin      any value between 0-1,  e.g.:0.5
+# tb:     top_border      any positive integer,   e.g.: 1
+# bm:     bottom_margin   any value between 0-1,  e.g.:0.5
+# bb:     bottom_border   any positive integer,   e.g.: 1
 defaults:
   size: 1.0em
   lines: 1
-  m_top: 0.16
-  margins: 1
-  p_top: 0.59
-  paddings: 1
-  b_top: 0
-  b_bot: 1
+  ws: 1
+  ts: 0.5
+  tm: 0.5
+  tb: 1
+  bm: 0.5
+  bb: 1
 h1:
-  size: 3.0em
-  lines: 2
-  b_bot: 5
-h2:
-  size: 2.4em
-  lines: 2
-  b_bot: 1
-  p_top: 0.59
-  m_top: 0.16
-  b_top: 1
-h3:
-  size: 1.8em
-  paddings: 0
-  m_top: 0.68
-  lines: 2
-  b_top: 1
-h4:
-  size: 1.2em
+  size: 1.0em
   lines: 1
+  ws: 1
+  ts: 0.5
+  tm: 0.5
+  tb: 1
+  bm: 0.5
+  bb: 1

@@ -9,80 +9,42 @@
 
 //  Calculations for defaults
 //**************************************
-!defaults_lineheight = !baseline / !defaults_size
-!defaults_margin_bot_ratio = 1 - !defaults_margin_top_ratio
-!defaults_padding_bot_ratio = 1 - !defaults_padding_top_ratio
+!defaults_baseline           = !baseline / !defaults_size
+!defaults_bot_space          = 1 - !defaults_top_space
+!defaults_top_padding        = 1 - !defaults_top_margin
+!defaults_bot_padding        = 1 - !defaults_top_padding
 
-!defaults_border_correction = !pixel_fudge / !defaults_size
-!defaults_border_top_size = !defaults_border_top_ratio * !defaults_border_correction
-!defaults_border_bottom_size = !defaults_border_bottom_ratio * !defaults_border_correction
+!defaults_border_correction  = !pixel_fudge / !defaults_size
+!defaults_border_top_size    = !defaults_top_border * !defaults_border_correction
+!defaults_border_bottom_size = !defaults_bot_border * !defaults_border_correction
 
-!defaults_margin_top     = !defaults_margin_top_ratio * !defaults_margins * !defaults_lineheight - !defaults_border_top_size / 2
-!defaults_margin_bottom  = !defaults_margin_bot_ratio * !defaults_margins * !defaults_lineheight - !defaults_border_bottom_size / 2
-!defaults_padding_top    = !defaults_padding_top_ratio * !defaults_paddings * !defaults_lineheight - !defaults_border_top_size / 2
-!defaults_padding_bottom = !defaults_padding_bot_ratio * !defaults_paddings * !defaults_lineheight - !defaults_border_bottom_size / 2
+!defaults_top_whitespace     = !defaults_whitespace * !defaults_top_space * !defaults_baseline
+!defaults_bot_whitespace     = !defaults_whitespace * !defaults_bot_space * !defaults_baseline
+
+!defaults_margin_top         = !defaults_top_margin * !defaults_top_whitespace - !defaults_border_top_size
+!defaults_margin_bottom      = !defaults_bot_margin * !defaults_bot_whitespace - !defaults_border_bottom_size
+!defaults_padding_top        = !defaults_top_padding * !defaults_top_whitespace
+!defaults_padding_bottom     = !defaults_bot_padding * !defaults_bot_whitespace
+
 
 
 //  Calculations for h1
 //**************************************
-!h1_lineheight = !baseline / !h1_size
-!h1_margin_bot_ratio = 1 - !h1_margin_top_ratio
-!h1_padding_bot_ratio = 1 - !h1_padding_top_ratio
+!h1_baseline           = !baseline / !h1_size
+!h1_bot_space          = 1 - !h1_top_space
+!h1_top_padding        = 1 - !h1_top_margin
+!h1_bot_padding        = 1 - !h1_top_padding
 
-!h1_border_correction = !pixel_fudge / !h1_size
-!h1_border_top_size = !h1_border_top_ratio * !h1_border_correction
-!h1_border_bottom_size = !h1_border_bottom_ratio * !h1_border_correction
+!h1_border_correction  = !pixel_fudge / !h1_size
+!h1_border_top_size    = !h1_top_border * !h1_border_correction
+!h1_border_bottom_size = !h1_bot_border * !h1_border_correction
 
-!h1_margin_top     = !h1_margin_top_ratio * !h1_margins * !h1_lineheight - !h1_border_top_size / 2
-!h1_margin_bottom  = !h1_margin_bot_ratio * !h1_margins * !h1_lineheight - !h1_border_bottom_size / 2
-!h1_padding_top    = !h1_padding_top_ratio * !h1_paddings * !h1_lineheight - !h1_border_top_size / 2
-!h1_padding_bottom = !h1_padding_bot_ratio * !h1_paddings * !h1_lineheight - !h1_border_bottom_size / 2
+!h1_top_whitespace     = !h1_whitespace * !h1_top_space * !h1_baseline
+!h1_bot_whitespace     = !h1_whitespace * !h1_bot_space * !h1_baseline
 
+!h1_margin_top         = !h1_top_margin * !h1_top_whitespace - !h1_border_top_size
+!h1_margin_bottom      = !h1_bot_margin * !h1_bot_whitespace - !h1_border_bottom_size
+!h1_padding_top        = !h1_top_padding * !h1_top_whitespace
+!h1_padding_bottom     = !h1_bot_padding * !h1_bot_whitespace
 
-//  Calculations for h2
-//**************************************
-!h2_lineheight = !baseline / !h2_size
-!h2_margin_bot_ratio = 1 - !h2_margin_top_ratio
-!h2_padding_bot_ratio = 1 - !h2_padding_top_ratio
-
-!h2_border_correction = !pixel_fudge / !h2_size
-!h2_border_top_size = !h2_border_top_ratio * !h2_border_correction
-!h2_border_bottom_size = !h2_border_bottom_ratio * !h2_border_correction
-
-!h2_margin_top     = !h2_margin_top_ratio * !h2_margins * !h2_lineheight - !h2_border_top_size / 2
-!h2_margin_bottom  = !h2_margin_bot_ratio * !h2_margins * !h2_lineheight - !h2_border_bottom_size / 2
-!h2_padding_top    = !h2_padding_top_ratio * !h2_paddings * !h2_lineheight - !h2_border_top_size / 2
-!h2_padding_bottom = !h2_padding_bot_ratio * !h2_paddings * !h2_lineheight - !h2_border_bottom_size / 2
-
-
-//  Calculations for h3
-//**************************************
-!h3_lineheight = !baseline / !h3_size
-!h3_margin_bot_ratio = 1 - !h3_margin_top_ratio
-!h3_padding_bot_ratio = 1 - !h3_padding_top_ratio
-
-!h3_border_correction = !pixel_fudge / !h3_size
-!h3_border_top_size = !h3_border_top_ratio * !h3_border_correction
-!h3_border_bottom_size = !h3_border_bottom_ratio * !h3_border_correction
-
-!h3_margin_top     = !h3_margin_top_ratio * !h3_margins * !h3_lineheight - !h3_border_top_size / 2
-!h3_margin_bottom  = !h3_margin_bot_ratio * !h3_margins * !h3_lineheight - !h3_border_bottom_size / 2
-!h3_padding_top    = !h3_padding_top_ratio * !h3_paddings * !h3_lineheight - !h3_border_top_size / 2
-!h3_padding_bottom = !h3_padding_bot_ratio * !h3_paddings * !h3_lineheight - !h3_border_bottom_size / 2
-
-
-//  Calculations for h4
-//**************************************
-!h4_lineheight = !baseline / !h4_size
-!h4_margin_bot_ratio = 1 - !h4_margin_top_ratio
-!h4_padding_bot_ratio = 1 - !h4_padding_top_ratio
-
-!h4_border_correction = !pixel_fudge / !h4_size
-!h4_border_top_size = !h4_border_top_ratio * !h4_border_correction
-!h4_border_bottom_size = !h4_border_bottom_ratio * !h4_border_correction
-
-!h4_margin_top     = !h4_margin_top_ratio * !h4_margins * !h4_lineheight - !h4_border_top_size / 2
-!h4_margin_bottom  = !h4_margin_bot_ratio * !h4_margins * !h4_lineheight - !h4_border_bottom_size / 2
-!h4_padding_top    = !h4_padding_top_ratio * !h4_paddings * !h4_lineheight - !h4_border_top_size / 2
-!h4_padding_bottom = !h4_padding_bot_ratio * !h4_paddings * !h4_lineheight - !h4_border_bottom_size / 2
 
