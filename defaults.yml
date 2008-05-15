@@ -1,20 +1,29 @@
-h1:
-  size: 3.0em
-  lines: 2
+defaults:
+  size: 1.0em
+  lines: 1
   m_top: 0.16
   margins: 1
   p_top: 0.59
   paddings: 1
   b_top: 0
   b_bot: 1
+h1:
+  size: 3.0em
+  lines: 2
+  b_bot: 5
 h2:
   size: 2.4em
   lines: 2
+  b_bot: 1
+  p_top: 0.59
+  m_top: 0.16
+  b_top: 1
 h3:
   size: 1.8em
+  paddings: 0
+  m_top: 0.68
   lines: 2
+  b_top: 1
 h4:
-  size: 1.6em
+  size: 1.2em
   lines: 1
-h5:
-  size: 1.4em

@@ -1,8 +1,14 @@
 require 'rubygems'
 require 'rake'
 require 'fileutils'
+require 'yaml'
 
-@types = %w{h1 h2 h3 h4 h5}
+desc "Load yaml and do something with it"
+task :yaml do
+  d = YAML::load_file("./defaults.yml")
+  require 'pp'
+  pp d
+end
 
 desc "Generate a variables.sass file"
 task :variables do
@@ -10,7 +16,7 @@ task :variables do
   FileUtils.mkdir_p(File.dirname(path))
   File.open(path, 'w+') do |f|
     f << variables_prelude
-    @types.each do |type|
+    types.each do |type|
       f << variables(type)
     end
   end
@@ -22,7 +28,7 @@ task :calculate do
   FileUtils.mkdir_p(File.dirname(path))
   File.open(path, 'w+') do |f|
     f << calculations_prelude
-    @types.each do |type|
+    types.each do |type|
       f << calculations(type)
     end
   end
@@ -34,7 +40,7 @@ task :definitions do
   FileUtils.mkdir_p(File.dirname(path))
   File.open(path, 'w+') do |f|
     f<< definitions_prelude
-    @types.each do |type|
+    types.each do |type|
       f << definitions(type)
     end
   end
@@ -43,28 +49,12 @@ end
 desc "Generate variables.sass and calulate.sass"
 task :all => [:variables, :calculate, :definitions]
 
-@defaults = {
-  "h1" => { :size => "3.0em",
-            :lines => "2",
-            :m_top => "0.16",
-            :margins => "1",
-            :p_top => "0.59",
-            :paddings => "1",
-            :b_top => "0",
-            :b_bot => "1"
-          },
-  "h2" => { :size => "2.4em",
-            :lines => "2"
-          },
-  "h3" => { :size => "1.8em",
-            :lines => "2"
-          },
-  "h4" => { :size => "1.6em",
-            :lines => "1"
-          },
-  "h5" => { :size => "1.4em"
-          }
-}
+def types
+  @defaults = YAML::load_file("./defaults.yml")
+  # TODO remove the "default" key/values
+  @defaults.keys
+  @defaults.keys.sort
+end
 
 def variables_prelude
   template = <<END
@@ -99,17 +89,14 @@ def variables(var="h1", values=@defaults)
   template = <<END
 //  #{var}
 //**************************************
-!#{var}_size                = #{values[var][:size]}
-!#{var}_lineheights         = #{values[var][:lines] || 1}
-
-!#{var}_margin_top_ratio    = #{values[var][:m_top] || 0.5}
-!#{var}_margins             = #{values[var][:margins] || 1}
-
-!#{var}_padding_top_ratio   = #{values[var][:p_top] || 0.5}
-!#{var}_paddings            = #{values[var][:paddings] || 1}
-
-!#{var}_border_top_ratio    = #{values[var][:b_top] || 0}
-!#{var}_border_bottom_ratio = #{values[var][:b_bot] || 1}
+!#{var}_size                = #{values[var]["size"]     || values["defaults"]["size"]}
+!#{var}_lineheights         = #{values[var]["lines"]    || values["defaults"]["lines"]}
+!#{var}_margin_top_ratio    = #{values[var]["m_top"]    || values["defaults"]["m_top"]}
+!#{var}_margins             = #{values[var]["margins"]  || values["defaults"]["margins"]}
+!#{var}_padding_top_ratio   = #{values[var]["p_top"]    || values["defaults"]["p_top"]}
+!#{var}_paddings            = #{values[var]["paddings"] || values["defaults"]["paddings"]}
+!#{var}_border_top_ratio    = #{values[var]["b_top"]    || values["defaults"]["b_top"]}
+!#{var}_border_bottom_ratio = #{values[var]["b_bot"]    || values["defaults"]["b_bot"]}
 
 END
 end
@@ -151,10 +138,10 @@ def calculations(var="h1")
 !#{var}_border_top_size = !#{var}_border_top_ratio * !#{var}_border_correction
 !#{var}_border_bottom_size = !#{var}_border_bottom_ratio * !#{var}_border_correction
 
-!#{var}_margin_top     = !#{var}_margin_top_ratio * !#{var}_margins * !#{var}_lineheight - !#{var}_border_top_size
-!#{var}_margin_bottom  = !#{var}_margin_bot_ratio * !#{var}_margins * !#{var}_lineheight - !#{var}_border_bottom_size
-!#{var}_padding_top    = !#{var}_padding_top_ratio * !#{var}_paddings * !#{var}_lineheight
-!#{var}_padding_bottom = !#{var}_padding_bot_ratio * !#{var}_paddings * !#{var}_lineheight
+!#{var}_margin_top     = !#{var}_margin_top_ratio * !#{var}_margins * !#{var}_lineheight - !#{var}_border_top_size / 2
+!#{var}_margin_bottom  = !#{var}_margin_bot_ratio * !#{var}_margins * !#{var}_lineheight - !#{var}_border_bottom_size / 2
+!#{var}_padding_top    = !#{var}_padding_top_ratio * !#{var}_paddings * !#{var}_lineheight - !#{var}_border_top_size / 2
+!#{var}_padding_bottom = !#{var}_padding_bot_ratio * !#{var}_paddings * !#{var}_lineheight - !#{var}_border_bottom_size / 2
 
 END
   template

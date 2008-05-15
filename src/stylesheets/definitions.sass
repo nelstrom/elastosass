@@ -3,6 +3,25 @@
 @import calculate.sass
 
 
+//  defaults
+//**************************************
+defaults
+  :font-size = !defaults_size
+  :line-height = !defaults_lineheight * !defaults_lineheights
+  :margin-top = !defaults_margin_top
+  :margin-bottom = !defaults_margin_bottom
+  :padding-top = !defaults_padding_top
+  :padding-bottom = !defaults_padding_bottom
+  :border
+    :bottom
+      :color #999
+      :style solid
+      :width = !defaults_border_bottom_size
+    :top
+      :color #999
+      :style solid
+      :width = !defaults_border_top_size
+
 //  h1
 //**************************************
 h1
@@ -78,22 +97,3 @@ h4
       :color #999
       :style solid
       :width = !h4_border_top_size
-
-//  h5
-//**************************************
-h5
-  :font-size = !h5_size
-  :line-height = !h5_lineheight * !h5_lineheights
-  :margin-top = !h5_margin_top
-  :margin-bottom = !h5_margin_bottom
-  :padding-top = !h5_padding_top
-  :padding-bottom = !h5_padding_bottom
-  :border
-    :bottom
-      :color #999
-      :style solid
-      :width = !h5_border_bottom_size
-    :top
-      :color #999
-      :style solid
-      :width = !h5_border_top_size
